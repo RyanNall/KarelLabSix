@@ -16,9 +16,37 @@ public class BeeperBot extends Robot
     }
     
     public void findAndCountBeepers() {
+        while (frontIsClear()){
+        moveToAvenueWithBeepers();
+        collectBeepersOnAvenue();
+        }
+        turn.Off();
+        
         
     }
-    
+    public void moveToAvenueWithBeepers(){
+     while (!nextToABeeper()){
+      move();
+     }
+    }
+    public void collectBeepersOnAvenue(){
+        turnLeft();
+        while (nextToABeeper()){
+            pickBeeper();
+            move();
+        }
+        turnRight();
+        turnRight();
+        while (frontIsClear()){
+            move();
+        }
+        turnLeft();
+    }
+    public void turnRight(){
+        turnLeft();
+        turnLeft();
+        turnLeft();
+    }
     public int[] getBeeperList() {
             //This will be used to print the beepers found.  No need to modify.
             return beeperList;
