@@ -20,6 +20,12 @@ public class SortingTaskDriver implements Directions
         //Your code goes here:
         Problem1 karel = new Problem1(8, 2, West, 0);  
         karel.sortBeepers();
+        System.out.println("I found the following beepers at each avenue: ");
+        System.out.print("[");
+        for (int i =0; i < karel.getBeeperList().length; i++) {
+               System.out.print(karel.getBeeperList()[i] + ", ");
+        }
+        System.out.println("]");
         karel.turnOff();  
     } 
     
@@ -70,7 +76,7 @@ public class SortingTaskDriver implements Directions
         World.setBeeperColor(Color.black);
         World.setStreetColor(Color.gray);
         World.setNeutroniumColor(Color.black);
-        World.setDelay(2);  
+        World.setDelay(6);  
         World.setVisible(true);
     }
 }

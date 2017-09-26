@@ -10,7 +10,8 @@ public class BeeperBot extends Robot
     //instance variable to store beeper count
     int[] beeperList = new int[13];
     int tempCount = 0;
-    
+    int beepers;
+    int avenue = -1;
     public BeeperBot(int st, int av, Direction dir, int numBeepers) {
         super(st, av, dir, numBeepers);
     }
@@ -20,21 +21,30 @@ public class BeeperBot extends Robot
         moveToAvenueWithBeepers();
         collectBeepersOnAvenue();
         }
-        turn.Off();
+        getBeeperList();
+        turnOff();
         
         
     }
     public void moveToAvenueWithBeepers(){
-     while (!nextToABeeper()){
-      move();
-     }
+     while (!nextToABeeper() && frontIsClear()){
+        move();
+        avenue++;
+
+        
+    }
     }
     public void collectBeepersOnAvenue(){
         turnLeft();
+        
         while (nextToABeeper()){
             pickBeeper();
+            beepers ++;
             move();
         }
+        beeperList [avenue] = beepers;
+
+        beepers = 0;
         turnRight();
         turnRight();
         while (frontIsClear()){
